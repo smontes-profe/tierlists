@@ -513,7 +513,7 @@ function exportResults() {
 }
 
 // ===================================
-// CONFIGURACIÓN DEL BANQUILLO
+// CONFIGURACIÓN DEL BANQUILLO Y PAPELERA
 // ===================================
 
 // Configurar eventos de drag & drop para el banquillo
@@ -522,4 +522,76 @@ document.addEventListener('DOMContentLoaded', () => {
     banquillo.addEventListener('dragover', handleDragOver);
     banquillo.addEventListener('drop', handleDrop);
     banquillo.addEventListener('dragleave', handleDragLeave);
+
+    // Configurar eventos para la zona de papelera
+    const trashZone = document.getElementById('trashZone');
+    trashZone.addEventListener('dragover', handleTrashDragOver);
+    trashZone.addEventListener('drop', handleTrashDrop);
+    trashZone.addEventListener('dragleave', handleTrashDragLeave);
 });
+
+/**
+ * Maneja el dragover sobre la zona de papelera
+ */
+function handleTrashDragOver(e) {
+    if (!draggedElement) return;
+
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+
+    this.classList.add('drag-over');
+}
+
+/**
+ * Maneja cuando el elemento sale de la zona de papelera
+ */
+function handleTrashDragLeave(e) {
+    if (e.target === this) {
+        this.classList.remove('drag-over');
+    }
+}
+
+/**
+ * Maneja el drop en la zona de papelera
+ * Elimina el estudiante de la lista
+ */
+function handleTrashDrop(e) {
+    if (!draggedElement) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    this.classList.remove('drag-over');
+
+    const studentName = draggedElement.dataset.studentName;
+
+    // Confirmar eliminación
+    if (confirm(`¿Estás seguro de eliminar a "${studentName}"?`)) {
+        // Eliminar del array de estudiantes
+        students = students.filter(s => s !== studentName);
+
+        // Eliminar el elemento del DOM
+        draggedElement.remove();
+
+        // Guardar cambios
+        saveStudentsToLocalStorage();
+
+        // Mostrar feedback visual
+        showTrashFeedback();
+    }
+}
+
+/**
+ * Muestra un feedback visual cuando se elimina un estudiante
+ */
+function showTrashFeedback() {
+    const trashZone = document.getElementById('trashZone');
+    const originalBg = trashZone.style.background;
+
+    trashZone.style.background = 'rgba(239, 68, 68, 0.5)';
+
+    setTimeout(() => {
+        trashZone.style.background = originalBg;
+    }, 300);
+}
+

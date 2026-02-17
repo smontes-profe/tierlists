@@ -263,6 +263,7 @@ body {
     background: rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     border: 2px dashed rgba(255, 255, 255, 0.2);
+    flex: 1;
 }
 
 .banquillo-container.drag-over {
@@ -278,6 +279,84 @@ body {
     text-align: center;
     width: 100%;
     padding: 2rem;
+}
+
+/* Wrapper para banquillo y papelera */
+.banquillo-wrapper {
+    display: flex;
+    gap: 1rem;
+    align-items: stretch;
+}
+
+/* Zona de Papelera */
+.trash-zone {
+    min-width: 150px;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(239, 68, 68, 0.1);
+    border: 2px dashed rgba(239, 68, 68, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.trash-zone:hover {
+    background: rgba(239, 68, 68, 0.15);
+    border-color: rgba(239, 68, 68, 0.5);
+    transform: scale(1.02);
+}
+
+.trash-zone.drag-over {
+    background: rgba(239, 68, 68, 0.3);
+    border-color: #ef4444;
+    border-style: solid;
+    transform: scale(1.05);
+}
+
+.trash-icon {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    transition: var(--transition);
+}
+
+.trash-zone:hover .trash-icon {
+    transform: scale(1.2) rotate(10deg);
+}
+
+.trash-zone.drag-over .trash-icon {
+    animation: shake 0.5s ease-in-out infinite;
+}
+
+.trash-text {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-align: center;
+    font-weight: 600;
+}
+
+.trash-zone.drag-over .trash-text {
+    color: #ef4444;
+}
+
+/* Animación de sacudida para la papelera */
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-5deg);
+    }
+
+    75% {
+        transform: rotate(5deg);
+    }
 }
 
 /* ===================================
@@ -334,6 +413,15 @@ body {
     .control-panel .col-md-6,
     .control-panel .col-md-12 {
         margin-bottom: 0.5rem;
+    }
+
+    .banquillo-wrapper {
+        flex-direction: column;
+    }
+
+    .trash-zone {
+        width: 100%;
+        min-height: 80px;
     }
 }
 
