@@ -9,13 +9,13 @@
     --text-secondary: #a0a0a0;
     --accent-primary: #e94560;
     --accent-secondary: #533483;
-    
+
     /* Colores de Tier por defecto */
     --tier-s: #10b981;
     --tier-a: #3b82f6;
     --tier-b: #fbbf24;
     --tier-c: #f97316;
-    
+
     --border-radius: 12px;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -124,17 +124,20 @@ body {
 
 /* Encabezado del Tier */
 .tier-label {
-    min-width: 100px;
-    width: 100px;
+    min-width: 200px;
+    width: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 900;
     color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     position: relative;
     flex-shrink: 0;
+    padding: 0.5rem;
+    text-align: center;
+    word-wrap: break-word;
 }
 
 .tier-label-text {
@@ -314,20 +317,20 @@ body {
    =================================== */
 @media (max-width: 768px) {
     .tier-label {
-        min-width: 60px;
-        width: 60px;
-        font-size: 1.5rem;
+        min-width: 120px;
+        width: 120px;
+        font-size: 1.2rem;
     }
-    
+
     .tier-items {
         padding: 0.75rem;
     }
-    
+
     .student-card {
         padding: 0.5rem 0.75rem;
         font-size: 0.85rem;
     }
-    
+
     .control-panel .col-md-6,
     .control-panel .col-md-12 {
         margin-bottom: 0.5rem;
@@ -338,13 +341,13 @@ body {
     .tier-row {
         flex-direction: column;
     }
-    
+
     .tier-label {
         width: 100%;
         min-height: 60px;
         font-size: 1.8rem;
     }
-    
+
     .tier-actions {
         top: 50%;
         transform: translateY(-50%);
@@ -360,6 +363,7 @@ body {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
