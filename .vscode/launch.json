@@ -1,0 +1,27 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "🚀 Abrir Tier List en Chrome",
+            "file": "${workspaceFolder}/index.html",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "msedge",
+            "request": "launch",
+            "name": "🚀 Abrir Tier List en Edge",
+            "file": "${workspaceFolder}/index.html",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "firefox",
+            "request": "launch",
+            "name": "🚀 Abrir Tier List en Firefox",
+            "file": "${workspaceFolder}/index.html",
+            "webRoot": "${workspaceFolder}",
+            "reAttach": true
+        }
+    ]
+}

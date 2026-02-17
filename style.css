@@ -1,0 +1,387 @@
+/* ===================================
+   VARIABLES Y TEMA OSCURO
+   =================================== */
+:root {
+    --bg-primary: #1a1a2e;
+    --bg-secondary: #16213e;
+    --bg-tertiary: #0f3460;
+    --text-primary: #eaeaea;
+    --text-secondary: #a0a0a0;
+    --accent-primary: #e94560;
+    --accent-secondary: #533483;
+    
+    /* Colores de Tier por defecto */
+    --tier-s: #10b981;
+    --tier-a: #3b82f6;
+    --tier-b: #fbbf24;
+    --tier-c: #f97316;
+    
+    --border-radius: 12px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    color: var(--text-primary);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    padding-bottom: 2rem;
+}
+
+/* ===================================
+   HEADER
+   =================================== */
+.text-gradient {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ===================================
+   PANEL DE CONTROL
+   =================================== */
+.control-panel {
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.btn {
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    transition: var(--transition);
+    border: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+}
+
+.btn-info {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+}
+
+.btn-info:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+}
+
+/* ===================================
+   TIER LIST CONTAINER
+   =================================== */
+.tier-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.tier-row {
+    display: flex;
+    background: var(--bg-secondary);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    transition: var(--transition);
+    cursor: move;
+}
+
+.tier-row:hover {
+    transform: translateX(4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.tier-row.dragging {
+    opacity: 0.5;
+    transform: scale(0.98);
+}
+
+.tier-row.drag-over {
+    border: 2px dashed var(--accent-primary);
+}
+
+/* Encabezado del Tier */
+.tier-label {
+    min-width: 100px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 900;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.tier-label-text {
+    position: relative;
+    z-index: 1;
+}
+
+.tier-actions {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: flex;
+    gap: 5px;
+    opacity: 0;
+    transition: var(--transition);
+    z-index: 2;
+}
+
+.tier-row:hover .tier-actions {
+    opacity: 1;
+}
+
+.tier-action-btn {
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.tier-action-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.1);
+}
+
+/* Contenedor de items del tier */
+.tier-items {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 1rem;
+    min-height: 80px;
+    align-content: flex-start;
+}
+
+.tier-items.drag-over {
+    background: rgba(233, 69, 96, 0.1);
+}
+
+/* ===================================
+   STUDENT CARD (Elemento arrastrable)
+   =================================== */
+.student-card {
+    background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    cursor: grab;
+    transition: var(--transition);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.student-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(233, 69, 96, 0.3);
+    border-color: var(--accent-primary);
+}
+
+.student-card:active {
+    cursor: grabbing;
+}
+
+.student-card.dragging {
+    opacity: 0.5;
+    transform: rotate(5deg);
+}
+
+.student-icon {
+    font-size: 1.2rem;
+}
+
+/* ===================================
+   BANQUILLO
+   =================================== */
+.banquillo-section {
+    background: var(--bg-secondary);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.banquillo-header {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.banquillo-header h3 {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.banquillo-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    min-height: 100px;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+}
+
+.banquillo-container.drag-over {
+    background: rgba(233, 69, 96, 0.1);
+    border-color: var(--accent-primary);
+}
+
+.banquillo-container:empty::before {
+    content: 'Arrastra aquí para devolver al banquillo';
+    color: var(--text-secondary);
+    font-style: italic;
+    display: block;
+    text-align: center;
+    width: 100%;
+    padding: 2rem;
+}
+
+/* ===================================
+   MODALES
+   =================================== */
+.bg-dark-custom {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary);
+}
+
+.modal-content {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-control.bg-dark {
+    background: var(--bg-primary) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-primary) !important;
+}
+
+.form-control.bg-dark:focus {
+    background: var(--bg-primary) !important;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 0.25rem rgba(233, 69, 96, 0.25);
+    color: var(--text-primary) !important;
+}
+
+.form-control-color {
+    width: 100%;
+    height: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+@media (max-width: 768px) {
+    .tier-label {
+        min-width: 60px;
+        width: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .tier-items {
+        padding: 0.75rem;
+    }
+    
+    .student-card {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.85rem;
+    }
+    
+    .control-panel .col-md-6,
+    .control-panel .col-md-12 {
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .tier-row {
+        flex-direction: column;
+    }
+    
+    .tier-label {
+        width: 100%;
+        min-height: 60px;
+        font-size: 1.8rem;
+    }
+    
+    .tier-actions {
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 1;
+    }
+}
+
+/* ===================================
+   ANIMACIONES
+   =================================== */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tier-row,
+.student-card {
+    animation: slideIn 0.3s ease-out;
+}
+
+/* ===================================
+   UTILIDADES
+   =================================== */
+.text-muted {
+    color: var(--text-secondary) !important;
+}
+
+.border-secondary {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.btn-close-white {
+    filter: invert(1);
+}
