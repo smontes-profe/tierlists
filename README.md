@@ -1,3 +1,10 @@
+#sample mermaids
+```mermaid
+useCaseDiagram
+  actor Cliente
+  Cliente --> (Consultar Saldo)
+  Cliente --> (Retirar Efectivo)
+```
 # tierlists
 tierlists to do coevaluation with the alumns
 ```mermaid
