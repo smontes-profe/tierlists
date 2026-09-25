@@ -584,20 +584,17 @@ function handleTrashDrop(e) {
 
     const studentName = draggedElement.dataset.studentName;
 
-    // Confirmar eliminación
-    if (confirm(`¿Estás seguro de eliminar a "${studentName}"?`)) {
-        // Eliminar del array de estudiantes
-        students = students.filter(s => s !== studentName);
+    // Eliminar del array de estudiantes directamente sin confirmación
+    students = students.filter(s => s !== studentName);
 
-        // Eliminar el elemento del DOM
-        draggedElement.remove();
+    // Eliminar el elemento del DOM
+    draggedElement.remove();
 
-        // Guardar cambios
-        saveStudentsToLocalStorage();
+    // Guardar cambios
+    saveStudentsToLocalStorage();
 
-        // Mostrar feedback visual
-        showTrashFeedback();
-    }
+    // Mostrar feedback visual
+    showTrashFeedback();
 }
 
 /**
