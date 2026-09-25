@@ -452,6 +452,25 @@ function importStudents() {
     alert(`Se importaron ${newStudents.length} estudiante(s)`);
 }
 
+/**
+ * Limpia todos los items/estudiantes tanto del banquillo como de las filas
+ */
+function clearAllStudents() {
+    const totalCards = document.querySelectorAll('.student-card').length;
+    
+    if (students.length === 0 && totalCards === 0) {
+        alert('No hay items para eliminar.');
+        return;
+    }
+
+    if (confirm('¿Estás seguro de que deseas eliminar todos los items del banquillo y de las filas?')) {
+        students = [];
+        saveStudentsToLocalStorage();
+        renderTiers();
+        renderStudents();
+    }
+}
+
 // ===================================
 // EXPORTACIÓN DE RESULTADOS
 // ===================================

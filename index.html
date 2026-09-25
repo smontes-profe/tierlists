@@ -18,21 +18,24 @@
         <!-- Panel de Control -->
         <div class="control-panel mb-3">
             <div class="row g-2">
-                <div class="col-md-6">
+                <div class="col-sm-6 col-lg-3">
                     <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#importModal">
                         📥 Importar Alumnos
                     </button>
                 </div>
-                <div class="col-md-6">
+                <div class="col-sm-6 col-lg-3">
                     <button class="btn btn-success w-100" onclick="exportResults()">
                         📤 Exportar Resultados (JSON)
                     </button>
                 </div>
-            </div>
-            <div class="row g-2 mt-1">
-                <div class="col-md-12">
+                <div class="col-sm-6 col-lg-3">
                     <button class="btn btn-info w-100" onclick="addNewTier()">
                         ➕ Añadir Nueva Fila
+                    </button>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <button class="btn btn-danger w-100" onclick="clearAllStudents()">
+                        🧹 Limpiar Items
                     </button>
                 </div>
             </div>
